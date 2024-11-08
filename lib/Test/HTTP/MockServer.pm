@@ -11,7 +11,7 @@ our $VERSION = '0.0.1';
 sub new {
     my ($class) = @_;
     $class = ref $class || $class;
-    return bless {}, $class;
+    return bless {parent_pid => $$}, $class;
 }
 
 sub bind_mock_server {
@@ -165,7 +165,7 @@ sub DESTROY {
     my $self = shift;
     eval {
         $self->stop_mock_server
-          if $self->{mock_server_pid};
+          if $self->{mock_server_pid} && $$ == $self->{parent_pid};
     };
 }
 
