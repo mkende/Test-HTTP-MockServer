@@ -5,8 +5,6 @@ use IO::Handle;
 use_ok('Test::HTTP::MockServer');
 
 my $server = Test::HTTP::MockServer->new();
-my $url = $server->url_base();
-my $ua = LWP::UserAgent->new;
 
 STDOUT->autoflush(1);
 STDERR->autoflush(1);
@@ -18,6 +16,9 @@ my $handle_request_phase1 = sub {
 };
 
 $server->start_mock_server($handle_request_phase1);
+
+my $url = $server->url_base();
+my $ua = LWP::UserAgent->new;
 
 my $res = $ua->get($url);
 is($res->code, 200, 'default response code');
@@ -81,4 +82,3 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
-

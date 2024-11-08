@@ -135,6 +135,8 @@ sub start_mock_server {
     my $self = shift;
     my $rp = shift or die "No request processor";
 
+    $self->bind_mock_server;
+
     die "There is already a mock server running"
       if $self->{mock_server_pid};
 
@@ -319,5 +321,3 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 =cut
-
-
