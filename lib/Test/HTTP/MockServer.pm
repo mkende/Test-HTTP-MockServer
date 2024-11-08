@@ -6,7 +6,7 @@ use HTTP::Response;
 use IO::Handle;
 use Socket;
 
-our $VERSION = '0.0.1';
+our $VERSION = '0.0.2';
 
 sub new {
     my ($class) = @_;
